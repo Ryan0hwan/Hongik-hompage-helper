@@ -1,0 +1,15 @@
+# 운영체제 파일
+.DS_Store
+Thumbs.db
+
+# 크롬 확장 프로그램 패키지 파일
+*.crx
+*.pem
+
+# 개발 파일
+*.tmp
+*.log
+node_modules/
+
+# 테스트 파일
+hongik_scholarship.html 

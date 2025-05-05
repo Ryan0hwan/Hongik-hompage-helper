@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "홍익대학교 서비스",
+  "version": "1.1",
+  "description": "홍익대학교 공지사항 및 클래스넷 바로가기 익스텐션",
+  "action": {
+    "default_popup": "popup/popup.html", 
+    "default_icon": "images/notice_icon.png"
+  },
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://*.hongik.ac.kr/*"],
+      "js": ["content/eyecare.js"]
+    },
+    {
+      "matches": [
+        "https://www.hongik.ac.kr/kr/newscenter/notice.do?mode=view*"
+      ],
+      "js": ["content/favorite_notice.js"]
+    }
+  ]
+}
+
