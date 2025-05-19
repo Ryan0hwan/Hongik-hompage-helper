@@ -59,65 +59,15 @@ document.addEventListener('DOMContentLoaded', function() {
     chrome.tabs.create({ url: 'https://www.hongik.ac.kr/kr/life/seoul-public-computer-room.do' });
   });
 
-  // 이메일 알림 등록
-  document.getElementById('registerEmailBtn').addEventListener('click', function() {
-    const emailInput = document.getElementById('emailInput');
-    const email = emailInput.value.trim();
-    
-    if (!email) {
-      alert('이메일 주소를 입력해주세요.');
-      return;
-    }
-    
-    // 이메일 형식 검증
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      alert('올바른 이메일 주소를 입력해주세요.');
-      return;
-    }
-    
-    // 로딩 표시
-    const btnText = document.querySelector('#registerEmailBtn .btn-text');
-    const originalText = btnText.textContent;
-    btnText.textContent = '등록 중...';
-    
-    // Google Apps Script 웹 앱 URL
-    const scriptUrl = 'https://script.google.com/macros/s/AKfycbxAq30QZ_exx1uXNAKiQiAYmdXnyTi3Xz3UkkMxl5_mD_8-jCIHZZ2FavnVZYIaLeiW/exec';
-    
-    // 이메일 등록 요청 - CORS 이슈 해결
-    fetch(`${scriptUrl}?action=registerEmail&email=${encodeURIComponent(email)}`, {
-      mode: 'no-cors'
-    })
-      .then(response => {
-        // no-cors 모드는 'opaque' 응답을 반환하므로 실제 응답을 처리할 수 없음
-        // 대신 성공 응답을 가정
-        return { success: true };
-      })
-      .then(data => {
-        // 버튼 텍스트 복원
-        btnText.textContent = originalText;
-        
-        if (data.success) {
-          alert('이메일 알림이 등록되었습니다. 새로운 장학 공지사항이 올라올 때마다 알림을 받으실 수 있습니다.');
-          emailInput.value = '';
-        } else {
-          console.error('Registration error:', data);
-          alert('이메일 등록 중 오류가 발생했습니다: ' + (data.message || '알 수 없은 오류'));
-        }
-      })
-      .catch(error => {
-        // 버튼 텍스트 복원
-        btnText.textContent = originalText;
-        
-        console.error('Error:', error);
-        
-        // 오류가 발생해도 사용자에게 성공 메시지 표시
-        alert('이메일 알림이 등록되었습니다. 새로운 장학 공지사항이 올라올 때마다 알림을 받으실 수 있습니다.');
-        emailInput.value = '';
-      });
-  });
+  // ====== 장학공지사항 이메일 알림 기능 ===== 
+  const goToEmailFormBtn = document.getElementById('goToEmailFormBtn');
+  if (goToEmailFormBtn) {
+    goToEmailFormBtn.addEventListener('click', function() {
+      window.open('https://docs.google.com/forms/d/1qonmjle2jvN2b9iQNIUOK37UtSlJf6oihVGbU7xeFT0/viewform?edit_requested=true', '_blank');
+    });
+  }
 
-  // 배경 편하게
+  // ====== 다크 모드 기능 =====
   document.getElementById('eyeCareBtn').addEventListener('click', function() {
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
       const currentTab = tabs[0];
@@ -141,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // 학교지도 새 창으로 열기
+  // ====== 학교지도 기능 =====  
   document.getElementById('schoolMapBtn').addEventListener('click', function() {
     const mapUrl = chrome.runtime.getURL('images/map_icon.png');
     const width = 800;
@@ -159,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const favoriteSearchEl = document.getElementById('favoriteSearch');
   const favoriteSortEl = document.getElementById('favoriteSort');
 
-  // 즐겨찾기 데이터 불러오기 및 이벤트 등록 (요소가 있을 때만)
+  // 즐겨찾기 데이터 불러오기 및 이벤트 등록 
   if (favoriteListEl && favoriteSearchEl && favoriteSortEl) {
     function loadFavorites() {
       chrome.storage.sync.get({favorites: []}, function(result) {

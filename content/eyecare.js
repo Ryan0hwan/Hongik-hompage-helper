@@ -172,4 +172,14 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     }
   }
   return true;
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  // ===== 장학공지사항 이메일 알림 기능 =====
+  const goToEmailFormBtn = document.getElementById('goToEmailFormBtn');
+  if (goToEmailFormBtn) {
+    goToEmailFormBtn.addEventListener('click', function() {
+      window.open('https://docs.google.com/forms/d/1qonmj...'); // 기존 코드 유지
+    });
+  }
 }); 

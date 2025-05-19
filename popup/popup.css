@@ -70,16 +70,28 @@ body {
 
 .menu-item {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  padding: 12px 15px;
+  justify-content: center;
+  width: 100%;
+  padding: 12px 0;
   border: none;
   background: none;
-  width: 100%;
-  text-align: left;
   cursor: pointer;
   font-size: 14px;
   color: #333;
   border-bottom: 1px solid #e0e0e0;
+  background-color: #f5f5f5;
+}
+
+.menu-item .material-icons {
+  margin-right: 0;
+  margin-bottom: 4px;
+}
+
+.menu-item .btn-text {
+  text-align: center;
+  width: 100%;
 }
 
 .menu-item:hover {

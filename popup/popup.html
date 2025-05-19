@@ -13,7 +13,7 @@
       <h1>홍익대학교</h1>
     </div>
     
-    <button id="schoolMapBtn" class="menu-item">
+    <button id="schoolMapBtn" class="menu-item" style="text-align: center">
       <span class="material-icons">map</span>
       <span class="btn-text">학교지도</span>
     </button>
@@ -25,7 +25,7 @@
         <span class="material-icons arrow">expand_more</span>
       </button>
       
-      <div class="dropdown-content">
+      <div class="dropdown-content" style="text-align: center">
         <button id="noticeBtn" class="menu-item">
           <span class="material-icons">announcement</span>
           <span class="btn-text">공지사항</span>
@@ -79,7 +79,7 @@
     </button>
 
     <div class="favorite-section">
-      <h3>즐겨찾기한 공지</h3>
+      <h3 style="text-align: center"> 즐겨찾기한 공지 </h3>
       <input type="text" id="favoriteSearch" placeholder="검색...">
       <select id="favoriteSort">
         <option value="recent">최근 추가순</option>
@@ -90,15 +90,12 @@
       </ul>
     </div>
     
-    <div class="email-notification-section">
-      <h3>장학공지사항 알림 등록</h3>
-      <div class="input-group">
-        <input type="email" id="emailInput" class="email-input" placeholder="이메일 주소 입력" />
-        <button id="registerEmailBtn" class="register-btn">
-          <span class="btn-text">등록</span>
-        </button>
-      </div>
-      <p class="email-info">등록된 이메일로 새로운 장학 공지사항이 올라올 때마다 알림이 전송됩니다.</p>
+    <div class="email-notification-section" style="text-align:center;">
+      <h3 style="margin-bottom:10px;">장학공지사항 이메일 알림</h3>
+      <button id="goToEmailFormBtn" class="register-btn" style="margin:0 auto;display:block;">
+        <span class="btn-text">이메일 알림 신청하기</span>
+      </button>
+      <p class="email-info" style="margin-top:8px;">이메일 알림 신청 Google Form으로 이동합니다.</p>
     </div>
   </div>
   <script src="popup.js"></script>
